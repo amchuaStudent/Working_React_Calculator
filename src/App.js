@@ -80,6 +80,7 @@ class App extends Component {
 
   equalAns = () => {
     this.operatorTog();
+    this.setState({checkVal: 0})
   }
 
 
