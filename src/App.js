@@ -91,11 +91,6 @@ class App extends Component {
     }
   }
 
-  ansNumVal = () =>{
-    this.setState({input: this.state.ansNum});
-  }
-
-
   render(){
     return (<div className="app">
 
@@ -122,7 +117,7 @@ class App extends Component {
           <Button handleClick={this.addToInput}>+</Button>
         </div>
         <div className="row">
-          <Button handleClick={this.ansNumVal}>.</Button>
+          <Button handleClick={this.addToInput}>.</Button>
           <Button handleClick={this.addToInput}>0</Button>
           <Button handleClick={this.equalAns}>=</Button>
           <Button handleClick={this.addToInput}>-</Button>
