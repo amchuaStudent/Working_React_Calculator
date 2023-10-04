@@ -5,6 +5,7 @@ import { Input } from  "./components/Input";
 import { ClearButton }  from './components/Clearbutton';
 
 
+
 class App extends Component {
   
 
@@ -18,7 +19,8 @@ class App extends Component {
       toggleNum: "1",
       operatorTog: "",
       ansNum: parseFloat(0),
-      checkVal: 0
+      checkVal: 0,
+      ansMade: ""
     }
   }
   conditionalState = con => {
@@ -48,7 +50,7 @@ class App extends Component {
     }
   }
     resetSwi = () => {
-      this.setState({toggleNum:"1", operatorTog: "", num1: "", num2: "", checkVal: 0, ansNum: parseFloat(0)});
+      this.setState({toggleNum:"1", operatorTog: "", num1: "", num2: "", checkVal: 0, ansNum: parseFloat(0), ansMade:""});
   }
 
   operatorTog = () => {
@@ -64,8 +66,9 @@ class App extends Component {
     if(this.state.operatorTog === "X"){
       this.setState({ansNum: parseFloat(this.state.num1) * parseFloat(this.state.num2)});
     }
-    this.setState({input: this.state.ansNum});
   }
+
+ 
 
   addToInput = val => {
     this.setState({input: this.state.input + val});
@@ -78,8 +81,18 @@ class App extends Component {
     this.setState({input: ""});
   }
 
-  equalAns = () => {
+  equalAns = equal => {
     this.operatorTog();
+    if (this.state.ansMade === ""){
+      this.setState({input: this.state.input + equal, ansMade: equal})
+    }
+    if (this.state.ansMade === equal){
+      this.setState({input: this.state.ansNum});
+    }
+  }
+
+  ansNumVal = () =>{
+    this.setState({input: this.state.ansNum});
   }
 
 
@@ -109,7 +122,7 @@ class App extends Component {
           <Button handleClick={this.addToInput}>+</Button>
         </div>
         <div className="row">
-          <Button handleClick={this.addToInput}>.</Button>
+          <Button handleClick={this.ansNumVal}>.</Button>
           <Button handleClick={this.addToInput}>0</Button>
           <Button handleClick={this.equalAns}>=</Button>
           <Button handleClick={this.addToInput}>-</Button>
