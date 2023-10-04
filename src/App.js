@@ -68,8 +68,6 @@ class App extends Component {
     }
   }
 
- 
-
   addToInput = val => {
     this.setState({input: this.state.input + val});
     this.conditionalState(val);
@@ -91,11 +89,14 @@ class App extends Component {
     }
   }
 
-
+  fullName = () => {
+    this.setState({input: "Angelo Miguel Chua"})
+    this.resetSwi();
+  }
   render(){
     return (<div className="app">
 
-      <h1>This is my Calculator</h1>
+      <h1>Calculator of Angelo Miguel Chua - CPE3A</h1>
 
       <div className="calc-wrapper">
         <Input input={this.state.input}/>
@@ -125,6 +126,9 @@ class App extends Component {
         </div>
         <div className="row">
           <ClearButton handleClear={this.clearInput}>Clear</ClearButton>
+        </div>
+        <div className="row">
+          <Button handleClick={this.fullName}>CHUA</Button>
         </div>
       </div>
     </div>);
