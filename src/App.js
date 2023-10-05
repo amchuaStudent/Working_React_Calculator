@@ -4,10 +4,7 @@ import { Button } from "./components/Button";
 import { Input } from  "./components/Input";
 import { ClearButton }  from './components/Clearbutton';
 
-
-
 class App extends Component {
-  
 
   constructor(props){
     super(props);
@@ -18,9 +15,7 @@ class App extends Component {
       num2: "",
       toggleNum: "1",
       operatorTog: "",
-      ansNum: parseFloat(0),
-      checkVal: 0,
-      ansMade: ""
+      checkVal: 0
     }
   }
   conditionalState = con => {
@@ -50,21 +45,21 @@ class App extends Component {
     }
   }
     resetSwi = () => {
-      this.setState({toggleNum:"1", operatorTog: "", num1: "", num2: "", checkVal: 0, ansNum: parseFloat(0), ansMade:""});
+      this.setState({toggleNum:"1", operatorTog: "", num1: "", num2: "", checkVal: 0});
   }
 
   operatorTog = () => {
     if(this.state.operatorTog === "+"){
-      this.setState({ansNum: parseFloat(this.state.num1) + parseFloat(this.state.num2)});
+      this.setState({input: parseFloat(this.state.num1) + parseFloat(this.state.num2)});
     }
     if(this.state.operatorTog === "-"){
-      this.setState({ansNum: parseFloat(this.state.num1) - parseFloat(this.state.num2)});
+      this.setState({input: parseFloat(this.state.num1) - parseFloat(this.state.num2)});
     }
     if(this.state.operatorTog === "/"){
-      this.setState({ansNum: parseFloat(this.state.num1)  / parseFloat(this.state.num2)});  
+      this.setState({input: parseFloat(this.state.num1)  / parseFloat(this.state.num2)});  
     }
     if(this.state.operatorTog === "X"){
-      this.setState({ansNum: parseFloat(this.state.num1) * parseFloat(this.state.num2)});
+      this.setState({input: parseFloat(this.state.num1) * parseFloat(this.state.num2)});
     }
   }
 
@@ -81,12 +76,6 @@ class App extends Component {
 
   equalAns = equal => {
     this.operatorTog();
-    if (this.state.ansMade === ""){
-      this.setState({input: this.state.input + equal, ansMade: equal})
-    }
-    if (this.state.ansMade === equal){
-      this.setState({input: this.state.ansNum});
-    }
   }
 
   fullName = () => {
