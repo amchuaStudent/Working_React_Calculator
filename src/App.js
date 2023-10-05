@@ -15,58 +15,66 @@ class App extends Component {
       num2: "",
       toggleNum: "1",
       operatorTog: "",
-      checkVal: 0
+      ansToNum1: 0
     }
   }
   conditionalState = con => {
     if (con === "+"){
-      this.setState({operatorTog: "+", toggleNum: "2", checkVal: this.state.checkVal + 1});
+      this.setState({operatorTog: "+", toggleNum: "2"});
+      if (this.state.ansToNum1 === 1){
+        this.setState({num1: this.state.input})
+      }
     }
     if (con === "-"){
-      this.setState({operatorTog: "-", toggleNum: "2", checkVal: this.state.checkVal + 1});
+      this.setState({operatorTog: "-", toggleNum: "2"});
+      if (this.state.ansToNum1 === 1){
+        this.setState({num1: this.state.input})
+      }
     }
     if (con === "/"){
-      this.setState({operatorTog: "/", toggleNum: "2", checkVal: this.state.checkVal + 1});
+      this.setState({operatorTog: "/", toggleNum: "2"});
+      if (this.state.ansToNum1 === 1){
+        this.setState({num1: this.state.input})
+      }
     }
     if (con === "X"){
-      this.setState({operatorTog: "X", toggleNum: "2", checkVal: this.state.checkVal + 1});
+      this.setState({operatorTog: "X", toggleNum: "2"});
+      if (this.state.ansToNum1 === 1){
+        this.setState({num1: this.state.input})
+      }
     }
     if (this.state.toggleNum === "1"){
       this.setState({num1: this.state.num1 + con});
     }
-    if (this.state.toggleNum === "2"){
+    if (this.state.toggleNum === "2" && con !== "+" && con !== "-" && con !== "/" && con !=="X"){
       this.setState({num2: this.state.num2 + con});
     }
   }
   
-  checkVal = () => {
-    if (this.state.checkVal === 2){
-      this.setState({input: "Too many different Numbers added"});
-    }
-  }
+ 
     resetSwi = () => {
-      this.setState({toggleNum:"1", operatorTog: "", num1: "", num2: "", checkVal: 0});
+      this.setState({toggleNum:"1", operatorTog: "", num1: "", num2: "", ansToNum1: 0});
   }
 
   operatorTog = () => {
     if(this.state.operatorTog === "+"){
-      this.setState({input: parseFloat(this.state.num1) + parseFloat(this.state.num2)});
+      this.setState({input: parseFloat(this.state.num1) + parseFloat(this.state.num2), ansToNum1: 1, num2:""});
     }
     if(this.state.operatorTog === "-"){
-      this.setState({input: parseFloat(this.state.num1) - parseFloat(this.state.num2)});
+      this.setState({input: parseFloat(this.state.num1) - parseFloat(this.state.num2), ansToNum1: 1, num2:""});
     }
     if(this.state.operatorTog === "/"){
-      this.setState({input: parseFloat(this.state.num1)  / parseFloat(this.state.num2)});  
+      this.setState({input: parseFloat(this.state.num1)  / parseFloat(this.state.num2), ansToNum1: 1, num2:""});  
     }
     if(this.state.operatorTog === "X"){
-      this.setState({input: parseFloat(this.state.num1) * parseFloat(this.state.num2)});
+      this.setState({input: parseFloat(this.state.num1) * parseFloat(this.state.num2), ansToNum1: 1, num2:""});
     }
   }
 
   addToInput = val => {
     this.setState({input: this.state.input + val});
     this.conditionalState(val);
-    this.checkVal();
+   
   }
 
   clearInput = () => {
@@ -74,7 +82,7 @@ class App extends Component {
     this.setState({input: ""});
   }
 
-  equalAns = equal => {
+  equalAns = () => {
     this.operatorTog();
   }
 
